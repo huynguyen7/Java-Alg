@@ -1,54 +1,56 @@
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Arrays;
+import java.util.*;
 
-public class LinkedList implements Iterator<ListNode> {
-	public static void main(String[] args) {
-		Integer[] nums1 = {1,2,3,4,5,6};
-		testWithIntegers(nums1);
-	}
-
-	private static void testWithIntegers(Integer[] nums) {
-		System.out.println(Arrays.toString(nums));
-		ListNode<Integer> head = createLinkedList(nums);
-		Iterator<ListNode> iter = new LinkedList(head);
-		
-		while(iter.hasNext()) {
-			ListNode<Integer> curr = iter.next();
-			System.out.print(curr + "->");
+public class LinkedList<T> implements Iterable<T> {
+	private ListNode<T> head, tail;
+	
+	public LinkedList() {}
+	
+	public void add(T data) {
+		if(head == null) {
+			head = new ListNode<T>(data);
+			tail = head;
+		} else {
+			tail.setNext(new ListNode<T>(data));
+			tail = tail.getNext();
 		}
-		System.out.print("NULL\n");
 	}
-	
-	private ListNode curr;
-	
-	public LinkedList(ListNode head) {
-		this.curr = head;
+
+	public ListNode<T> getHead() {
+		return this.head;
 	}
-	
-	@Override
-	public boolean hasNext() {
-		return curr != null;
+
+	public ListNode<T> getTail() {
+		return this.tail;
 	}
 
 	@Override
-	public ListNode next() {
-		if(!hasNext()) throw new NoSuchElementException();
-		ListNode tmp = curr;
-		curr = curr.getNext();
-		return tmp;
-	}
-
-	private static ListNode createLinkedList(Object[] vals) {
-		if(vals.length == 0 || vals == null) return null;
-		ListNode dummy = new ListNode();
-		ListNode curr = dummy;
-		
-		for(int i = 0; i < vals.length; ++i) {
-			curr.setNext(new ListNode(vals[i]));
+	public String toString() {
+		StringBuilder rs = new StringBuilder();
+		ListNode<T> curr = head;
+		while(curr != null) {
+			rs.append(curr.getVal() + "->");
 			curr = curr.getNext();
 		}
+		rs.append("NULL");
+		
+		return rs.toString();
+	}
 
-		return dummy.getNext();
+	public Iterator<T> iterator() {
+		return new Iterator<T>() {
+			ListNode<T> curr = head;
+			
+			@Override
+			public boolean hasNext() {
+				return curr != null;
+			}
+			
+			@Override
+			public T next() {
+				ListNode<T> tmp = curr;
+				curr = curr.getNext();
+				return tmp.getVal();
+			}
+		};
 	}
 }

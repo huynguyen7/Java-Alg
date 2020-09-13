@@ -1,26 +1,16 @@
-public class ListNode<T> {
-	public static void main(String[] args) {
-		System.out.println("---Test---");
-		ListNode<Integer> node1 = new ListNode(8);
-		System.out.println(node1);
-		System.out.println(node1.getNext());
-	}
-	
+public class ListNode<T>{
 	private T val;
-	private ListNode next;
+	private ListNode<T> next;
 
 	public ListNode() {}
+	public ListNode(T val) {this.val = val;}
+	public ListNode(T val, ListNode<T> next) {this.val = val; this.next = next;}
 
-	public ListNode(T val) {
+	public void setVal(T val) {
 		this.val = val;
 	}
 
-	public ListNode(ListNode next) {
-		this.next = next;
-	}
-
-	public ListNode(T val, ListNode next) {
-		this.val = val;
+	public void setNext(ListNode<T> next) {
 		this.next = next;
 	}
 
@@ -28,20 +18,7 @@ public class ListNode<T> {
 		return this.val;
 	}
 
-	public void setVal(T val) {
-		this.val = val;
-	}
-
-	public ListNode getNext() {
+	public ListNode<T> getNext() {
 		return this.next;
-	}
-
-	public void setNext(ListNode next) {
-		this.next = next;
-	}
-
-	@Override
-	public String toString() {
-		return String.valueOf(this.val);
 	}
 }
