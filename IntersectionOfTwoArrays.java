@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-//leetcode 349
+//leetcode 349, element-prog 14.1
 public class IntersectionOfTwoArrays {
     public static void main(String args[]) {
         int[] a1 = { 1, 2, 2, 1 };
@@ -14,7 +14,7 @@ public class IntersectionOfTwoArrays {
 
         int[] a2 = { 4, 9, 5 };
         int[] b2 = { 9, 4, 9, 8, 4 };
-        showResults(a2, b2); // pexpect {9,4}
+        showResults(a2, b2); // expect {9,4}
     }
 
     private static void showResults(int[] nums1, int[] nums2) {
