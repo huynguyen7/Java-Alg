@@ -25,7 +25,8 @@ public class FindTheLongestSubarrayWithDistinctEntries {
 		System.out.printf("Longest length of subarray with distince element: %d\n\n", rs);
 	}
 
-	// Time: O(), space: O()
+	// Time: O(n), space: O(m)
+	// n is cArr.length, m is total of UNIQUE chars
 	public static int find(char[] cArr) {
 		Set<Character> marked = new HashSet<>();
 		int maxLength = 0;
