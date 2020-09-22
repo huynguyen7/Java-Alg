@@ -20,9 +20,26 @@ public class MergeSortedArray {
 		System.out.println(Arrays.toString(rs) + "\n");
 	}
 
+	// better approach
+	// Time: O(m + n), space: O(1)
+	public static int[] merge(int[] nums1, int m, int[] nums2, int n) {
+		int index = nums1.length - 1;
+		int i, j;
+		
+		for(i = m - 1, j = n - 1; i >= 0 && j >= 0; ) 
+			nums1[index--] = nums1[i] >= nums2[j] ? nums1[i--] : nums2[j--];
+		while(i >= 0)
+			nums1[index--] = nums1[i--];
+		while(j >= 0) // avoid if m == n
+			nums1[index--] = nums2[j--];
+
+		return nums1;
+	}
+
+	// naive approach
 	// Time: O(m + n), space: O(m + n)
 	// m is length of desired First elements in nums1, n is also for nums2
-	public static int[] merge(int[] nums1, int m, int[] nums2, int n) {
+	public static int[] mergeII(int[] nums1, int m, int[] nums2, int n) {
 		int[] aux = new int[m + n];
 		
 		int i = 0, j = 0; // i is used with nums1, j is used with nums2
@@ -36,3 +53,7 @@ public class MergeSortedArray {
 		return aux;
 	}
 }
+
+// Constraints
+// nums1.length = m + n
+// nums2.length = n
