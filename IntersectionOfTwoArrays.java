@@ -27,6 +27,8 @@ public class IntersectionOfTwoArrays {
         System.out.println(Arrays.toString(rs) + "\n");
     }
 
+	// Time: O(n + mlogm), space: O(n)
+	// n is nums1.length, m is nums2.length
     public static int[] intersection(int[] nums1, int[] nums2) {
         Set<Integer> set = new HashSet<>();
         List<Integer> holder = new ArrayList<>();
@@ -34,11 +36,11 @@ public class IntersectionOfTwoArrays {
         for (int i = 0; i < nums1.length; ++i)
             set.add(nums1[i]);
 
-        Arrays.sort(nums2);
+        Arrays.sort(nums2); // time: O(mlogm)
         Iterator<Integer> iter = set.iterator();
-        while (iter.hasNext()) {
+        while (iter.hasNext()) { // time: O(m)
             int val = iter.next();
-            if (binarySearch(nums2, val, 0, nums2.length - 1))
+            if (binarySearch(nums2, val, 0, nums2.length - 1)) // time: O(logm)
                 holder.add(val);
         }
 
