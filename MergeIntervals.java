@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
-//leetcode 56.
+//leetcode 56, element-prog 14.6
 public class MergeIntervals {
 	public static void main(String[] args) {
 		int[][] intervals1 = {
