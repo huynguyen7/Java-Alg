@@ -3,7 +3,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-//leetcode 235
+// leetcode 235, element-prog 15.4
 public class LowestCommonAncestorOfABinarySearchTree {
 	public static void main(String[] args) {
 		Integer[] nums1 = {6,2,8,0,4,7,9,null,null,3,5};
@@ -13,10 +13,14 @@ public class LowestCommonAncestorOfABinarySearchTree {
 		int p2 = 2, q2 = 4;
 		showResults(nums1, p2, q2); //expect 2
 	}
+	// The lowest common ancestor(LCA) is
+	// defined between two nodes p and q as the lowest node
+	// that has both p and q as descendants
+	// where we allow a node to be a descendant of itself.
 
-	//constraints:
-	//all the nodes' values will be UNIQUE.
-	//p and q are different and both values always exist in the tree.
+	// Constraints:
+	// all the nodes' values will be UNIQUE.
+	// p and q are different and both values always exist in the tree.
 	private static void showResults(Integer[] nums, int p, int q) {
 		System.out.println("------ShowResults------\n");
 		System.out.printf("p: %d, q: %d\n", p, q);
@@ -25,16 +29,27 @@ public class LowestCommonAncestorOfABinarySearchTree {
 		TreeNode qNode = new TreeNode(q);
 		printBinaryTree(root);
 
-		TreeNode rs = lowestCommonAncestor(root, pNode, qNode);
+		TreeNode rs = lowestCommonAncestorI(root, pNode, qNode);
 		System.out.println("\nCommon ancestor node is: " + rs.val + "\n");
 	}
-	
-	//The lowest common ancestor(LCA) is
-	//defined between two nodes p and q as the lowest node
-	//that has both p and q as descendants
-	//where we allow a node to be a descendant of itself.
-	//time: O(n), space: O(h)
-	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+	// iterative approach
+	// Time: O(h), space: O(1)
+	public static TreeNode lowestCommonAncestorI(TreeNode root, TreeNode p, TreeNode q) {
+		TreeNode curr = root;
+		
+		while(curr != null) {
+			if(curr.val < p.val && curr.val < q.val) curr = curr.right;
+			else if(curr.val > p.val && curr.val > q.val) curr = curr.left;
+			else return curr;	
+		}
+		
+		return curr;
+	}
+
+	// recursive approach
+	// Time: O(h), space: O(h)
+	public static TreeNode lowestCommonAncestorII(TreeNode root, TreeNode p, TreeNode q) {
 		if(root == null) return null;
 		return dfs(root, p, q);
 	}
