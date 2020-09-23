@@ -27,7 +27,8 @@ public class SortList {
 	}
 
 	// Using merge sort
-	// Time: O(nlogn), space: O(1)
+	// Time: O(nlogn), space: O(logn)
+	// space is logn for call stack
 	public static ListNode mergeSort(ListNode head) {
 		if(head == null || head.next == null) return head;
 		
