@@ -7,10 +7,11 @@ import java.util.ArrayList;
 public class FindTheFirstKeyGreaterThanAGivenValueInBST {
 	public static void main(String[] args) {
 		Integer[] nums1 = {2,1,3};
-		showResults(nums1, 1); //expect 2
+		showResults(nums1, 1); // expect 2
 
-		Integer[] nums2 = {10,5,15,null,null,11,20};
-		showResults(nums2, 19); //expect 20
+		Integer[] nums2 = {10,5,15,null,null,13,20};
+		showResults(nums2, 19); // expect 20
+		showResults(nums2, 12); // expect 13
 
 		Integer[] nums3 = {4,2,7,1,3,6,11};
 		showResults(nums3, 12); // expect null
@@ -21,19 +22,38 @@ public class FindTheFirstKeyGreaterThanAGivenValueInBST {
 		TreeNode root = createTreeFromArray(nums);
 		printBinaryTree(root);
 		
-		TreeNode rs = findFirstGreaterThanK(root, k);
+		TreeNode rs = findFirstGreaterThanKInorder(root, k);
 		if(rs == null) System.out.printf("\n k: %d, rs: null\n\n", k);
 		else System.out.printf("\nk: %d, rs: %d\n\n", k, rs.val);
 	}
 	
-	//time: O(h), space: O(h)
-	public static TreeNode findFirstGreaterThanK(TreeNode root, int k) {
-		if(root == null) return root;
-		else if(root.val >= k) return root;
-		else return findFirstGreaterThanK(root.right, k);
+	// getting the first node in INORDER traversal which has val greater than k
+	// using iterative
+	// Time: O(h), space: O(1)
+	public static TreeNode findFirstGreaterThanKInorder(TreeNode root, int k) {
+		TreeNode curr = root, firstSoFar = null;
+
+		while(curr != null) {
+			if(curr.val <= k) curr = curr.right;
+			else { // curr.val > k
+				firstSoFar = curr;
+				curr = curr.left;
+			}
+		}
+		
+		return firstSoFar;
 	}
 
-	//time: O(n), space: O(h); n is total nodes, h is height of the tree
+	// getting the first node in PREORDER traversal which has val greater than k
+	// using recursive
+	// Time: O(h), space: O(h)
+	public static TreeNode findFirstGreaterThanKPreorder(TreeNode root, int k) {
+		if(root == null) return root;
+		else if(root.val > k) return root;
+		else return findFirstGreaterThanKPreorder(root.right, k);
+	}
+
+	// Time: O(n), space: O(h); n is total nodes, h is height of the tree
 	public static void printPreorder(TreeNode root) {
 		if(root == null) return;
 		else {
