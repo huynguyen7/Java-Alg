@@ -3,14 +3,14 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-// leetcode 701, element-prog 15.10
-public class InsertIntoABST {
+// leetcode 450 , element-prog 15.10
+public class DeleteNodeInABST {
 	public static void main(String[] args) {
 		Integer[] nums1 = {4,2,7,1,3};
-		showResults(nums1, 5);
+		showResults(nums1, 4);
 
 		Integer[] nums2 = {10,5,15,null,null,13,20};
-		showResults(nums2, 19);
+		showResults(nums2, 15);
 	}
 
 	private static void showResults(Integer[] nums, int val) {
@@ -19,22 +19,72 @@ public class InsertIntoABST {
 		printBinaryTree(root);
 		
 		System.out.println();
-		TreeNode rs = insertIntoBST(root, val);
+		System.out.printf("Delete: %d\n", val);
+		TreeNode rs = deleteNode(root, val);
 		printBinaryTree(rs);
 		System.out.println();
 	}
 
 	// Time: O(h), space: O(h)
-	public static TreeNode insertIntoBST(TreeNode root, int val) {
-		if(root == null) return new TreeNode(val, null, null);
+	public static TreeNode deleteNode(TreeNode root, int key) {
+		return dfs(root, key);
+	}
+
+	private static TreeNode dfs(TreeNode root, int key) {
+		if(root == null) return null;
 		else {
-			if(val < root.val) root.left = insertIntoBST(root.left, val);
-			else if(val > root.val) root.right = insertIntoBST(root.right, val);
-			
+			if(key < root.val) root.left = dfs(root.left, key);
+			else if(key > root.val) root.right = dfs(root.right, key);
+			else { // found match key
+				if(root.right == null) return root.left;
+				else if(root.left == null) return root.right;
+				
+				TreeNode tmp = root;
+				root = getLeftMost(tmp.right); // get min
+				root.right = deleteMin(tmp.right); // remove min node on the right sub tree
+				root.left = tmp.left; // keep the left sub tree
+			}
+
 			return root;
 		}
 	}
+
+	// Time: O(h), space: O(h)
+	private static TreeNode deleteMin(TreeNode root) {
+		if(root.left == null) return root.right;
+		else {
+			root.left = deleteMin(root.left);
+			return root;
+		}
+	}
+
+	// Time: O(h), space: O(h)
+	private TreeNode deleteMax(TreeNode root) {
+		if(root.right == null) return root.left;
+		else {
+			root.right = deleteMin(root.right);
+			return root;
+		}
+	}
+
+	// Time: O(h), space: O(h)
+	private static TreeNode getLeftMost(TreeNode root) {
+		if(root == null) return root;
+		
+		TreeNode curr = root;
+		while(curr.left != null) curr = curr.left;
+		return curr;
+	}
 	
+	// Time: O(h), space: O(h)
+	private static TreeNode getRightMost(TreeNode root) {
+		if(root == null) return root;
+		
+		TreeNode curr = root;
+		while(curr.right != null) curr = curr.right;
+		return curr;
+	}
+
 	//time: O(n), space: O(h)
 	public static boolean isSymmetric(TreeNode root) {
 		if(root == null) return true;
