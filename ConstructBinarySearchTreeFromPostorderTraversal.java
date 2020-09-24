@@ -6,27 +6,24 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 
-// leetcode 1008, element-prog 15.5
-public class ConstructBinarySearchTreeFromPreorderTraversal {
+//element-prog 15.5
+public class ConstructBinarySearchTreeFromPostorderTraversal {
 	public static void main(String[] args) {
-		int[] pre1 = {8,5,1,7,10,12};
-		showResults(pre1); //expect {8,5,10,1,7,null,12}
+		int[] nums1 = {1,3,2};
+		showResults(nums1); // expect {2,1,3}
+		
+		int[] nums2 = {5,13,20,15,10};
+		showResults(nums2); // expect {10,5,15,null,null,13,20}
 
-		int[] pre2 = {4,2,1,3,8,5,6,9};
-		showResults(pre2);
-
-		int[] pre3 = {4,1,2};
-		showResults(pre3);
-
-		int[] pre4 = {10,5,15,13,20};
-		showResults(pre4);
+		int[] nums3 = {3,6,5,13,20,15,10};
+		showResults(nums3); // expect {10,5,15,3,6,13,20}
 	}
 
-	private static void showResults(int[] preorder) {
+	private static void showResults(int[] postorder) {
 		System.out.println("------ShowResults------\n");
-		System.out.println("Preorder: " + Arrays.toString(preorder));
+		System.out.println("Postorder: " + Arrays.toString(postorder));
 
-		TreeNode rs = bstFromPreorder(preorder);
+		TreeNode rs = bstFromPostorder(postorder);
 
 		System.out.println();
 		printBinaryTree(rs);
@@ -34,32 +31,32 @@ public class ConstructBinarySearchTreeFromPreorderTraversal {
 	}
 
 	// Time: O(n), space: O(h)
-	public static TreeNode bstFromPreorder(int[] preorder) {
-		return dfs(preorder, 0, preorder.length - 1);
+	public static TreeNode bstFromPostorder(int[] postorder) {
+		return dfs(postorder, 0, postorder.length - 1);
 	}
     
-    private static TreeNode dfs(int[] preorder, int start, int end) {
-        if(start > end) return null;
-        else {
-            TreeNode root = new TreeNode(preorder[start]);
-            int rightRootIndex = -1;
-            
-            for(int i = start + 1; i <= end; ++i) { // find index for right sub tree.
-                if(preorder[i] > root.val) {
-                    rightRootIndex = i;
-                    break;
-                }
-            }
-            
-            if(rightRootIndex == -1) { // -1 means cannot find such index
-                root.left = dfs(preorder, start + 1, end);
-            } else {
-                root.left = dfs(preorder, start + 1, rightRootIndex - 1);
-                root.right = dfs(preorder, rightRootIndex, end);
-            }
-            
-            return root;
-        }
+    private static TreeNode dfs(int[] postorder, int start, int end) {
+		if(start > end) return null;
+		else {
+			TreeNode root = new TreeNode(postorder[end]);
+			int leftRootIndex = -1;
+			
+			for(int i = end - 1; i >= start; --i) { // find left subtree's index
+				if(postorder[i] < root.val) {
+					leftRootIndex = i;
+					break;
+				}
+			}
+
+			if(leftRootIndex == -1) { // -1 means cannot find such index
+				root.right = dfs(postorder, start, end - 1);
+			} else {
+				root.left = dfs(postorder, start, leftRootIndex);
+				root.right = dfs(postorder, leftRootIndex + 1, end - 1);
+			}
+
+			return root;
+		}
     }
 
 	//time: O(n), space: O(1)
