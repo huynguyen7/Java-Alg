@@ -12,7 +12,8 @@ public class BinarySearch {
 		System.out.printf("From iterative: %b\n", iterative);
     }
 
-	//time: O(logn)
+	// recursive approach
+	// Time: O(logn)
     public static boolean binarySearch1(int[] nums, int target, int lo, int hi) {
 		if(lo > hi) return false;
 		int mid = lo + (hi - lo) / 2;
@@ -21,7 +22,8 @@ public class BinarySearch {
 		else return binarySearch1(nums, target, mid + 1, hi);
     }
 
-	//time: O(logn)
+	// iterative approach
+	// Time: O(logn)
 	public static boolean binarySearch2(int[] nums, int target) {
 		int lo = 0, hi = nums.length - 1;
 		while(lo <= hi) {
