@@ -19,26 +19,66 @@ public class FibonacciNumber {
 
 	private static Map<Integer, Integer> cache;
 
-	// DP approach
-	// Time: (n), space: O(n)
-	public static int fibI(int n) {
-		cache = new HashMap<>();
-		return dp(n);
-	}
-
-	private static int dp(int n) {
-		if(n <= 1) return n;
-		else if(!cache.containsKey(n))
-			cache.put(n, dp(n-1) + dp(n-2));
-		return cache.get(n);
-	}
-
-	// recursive approach
-	// cost space complexity for the call stack.
-	// Time: O(2^n), space: O(n)
-	public static int fibII(int n) {
-		if(n <= 1) return n;
-		
-		return fibII(n-1) + fibII(n-2);
-	}
+    // best approach, only replacing elements in cache without adding new ones.
+    // DP approach with iterations
+    // bottom-up DP
+    // Time: O(n), space: O(1)
+    public static int fibI(int n) {
+        if(n <= 1) return n;
+        
+        cache = new HashMap<>();
+        cache.put(0,0); // init base case
+        cache.put(1,1); // init base case
+        
+        int counter = 2;
+        while(counter <= n) {
+            cache.put(counter % 2, cache.get((counter - 1) % 2) + cache.get((counter - 2) % 2));
+            counter++;
+        }
+        
+        return cache.get(n % 2);
+    }
+    
+    
+    // better approach
+    // DP approach with iterations
+    // bottom-up DP
+    // Time: O(n), space: O(n)
+    public static int fibII(int n) {
+        if(n <= 1) return n;
+        
+        cache = new HashMap<>();
+        cache.put(0,0); // init base case
+        cache.put(1,1); // init base case
+        
+        int counter = 2;
+        while(counter <= n) {
+            cache.put(counter, cache.get(counter - 1) + cache.get(counter - 2));
+            counter++;
+        }
+        
+        return cache.get(n);
+    }
+    
+    // DP approach with recursion => This cost more space for recursive calls
+    // top-down DP
+    // Time: O(n), space: O(n)
+    public static int fibIII(int n) {
+        cache = new HashMap<>();
+        return dp(n);
+    }
+    
+    private static int dp(int n) {
+        if(n <= 1) return n;
+        else if(!cache.containsKey(n))
+            cache.put(n, dp(n - 1) + dp(n - 2));
+        return cache.get(n);
+    }
+    
+    //  recursive approach
+    // Time: O(2^n), space: O(n)
+    public static int fibIV(int n) {
+        if(n <= 1) return n;
+        else return fibIV(n - 1) + fibIV(n - 2);
+    }
 }
