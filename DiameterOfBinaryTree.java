@@ -3,7 +3,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-//leetcode 543. 
+// leetcode 543, element-prog 16.11
 public class DiameterOfBinaryTree {
 	public static void main(String[] args) {
 		Integer[] nums1 = {1,2,3,4,5};
