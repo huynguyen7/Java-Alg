@@ -43,7 +43,8 @@ public class Knapsack {
 	// UNTIL there is no more capacity left.
 	
 	// DP approach
-	// Time: O(), space: O()
+	// n = items.size(), c = capacity
+	// Time: O(n*c), space: O(n*c)
 	public static int optimumSubjectToCapacityI(List<Item> items, int capacity) {
 		int[][] maxValuesForCapacities = new int[items.size() + 1][capacity + 1];
 
