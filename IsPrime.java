@@ -1,11 +1,12 @@
 public class IsPrime {
 	public static void main(String[] args) {
 		int num = Integer.parseInt(args[0]);
-		System.out.printf("%d -> is prime: %b\n", num, isPrime(num));
+		System.out.printf("%d -> is prime: %b\n", num, isPrimeII(num));
 	}
 
+	// iterative approach
 	// Time: O(n^(1/2)), space: O(1)
-	public static boolean isPrime(int num) {
+	public static boolean isPrimeI(int num) {
 		num = num < 0 ? num * -1 : num;
 		if(num <= 1) return false;
 		
@@ -16,5 +17,20 @@ public class IsPrime {
 		}
 
 		return true;
+	}
+
+	// recursive approach
+	public static boolean isPrimeII(int num) {
+		num = num < 0 ? num * -1 : num;
+		if(num <= 1) return false;
+		
+		return dfs(num, (int) Math.sqrt(num));
+	}
+	
+	private static boolean dfs(int num, int counter) {
+		if(counter == 1) return true;
+		if(num % counter == 0) return false;		
+
+		return dfs(num, counter - 1);
 	}
 }
