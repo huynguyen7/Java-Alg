@@ -1,0 +1,3 @@
+Good explanation:
+https://www.javatpoint.com/multithreading-in-java
+https://www.javatpoint.com/synchronization-in-java

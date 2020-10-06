@@ -1,0 +1,2 @@
+Resource:
+https://www.javatpoint.com/synchronization-in-java

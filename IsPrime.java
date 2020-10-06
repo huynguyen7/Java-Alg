@@ -20,6 +20,7 @@ public class IsPrime {
 	}
 
 	// recursive approach
+	// Time: O(n^(1/2)), space: O(n^(1/2))
 	public static boolean isPrimeII(int num) {
 		num = num < 0 ? num * -1 : num;
 		if(num <= 1) return false;
