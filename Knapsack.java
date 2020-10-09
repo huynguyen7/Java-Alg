@@ -42,7 +42,8 @@ public class Knapsack {
 	// Subproblem: Investigate the maximum value at each time we pick an item
 	// UNTIL there is no more capacity left.
 	
-	// DP approach
+	// DP approach.
+	// bottom-up DP.
 	// n = items.size(), c = capacity
 	// Time: O(n*c), space: O(n*c)
 	public static int optimumSubjectToCapacityI(List<Item> items, int capacity) {
@@ -67,7 +68,7 @@ public class Knapsack {
 		return maxValuesForCapacities[items.size()][capacity];
 	}
 
-	// Recursive approach
+	// Recursive approach.
 	// n = items.size()
 	// Time: O(n*2^n), space: O(2^n)
 	public static int optimumSubjectToCapacityII(List<Item> items, int capacity) {
