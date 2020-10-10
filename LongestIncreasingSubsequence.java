@@ -68,8 +68,6 @@ public class LongestIncreasingSubsequence {
 			int currMaxLength = dfsI(nums, maxLengthSubsequences, i) + 1;
 			maxLength = Math.max(maxLength, currMaxLength);
 		}
-
-		System.out.println(Arrays.toString(maxLengthSubsequences));
 		
 		return maxLength;
 	}
