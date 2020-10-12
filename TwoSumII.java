@@ -36,7 +36,6 @@ public class TwoSumII {
 			if(currSum == target) return new int[] {i + 1, j + 1};
 			else if(currSum > target) j--;
 			else i++;
-			
 		}
 
 		return null;	
