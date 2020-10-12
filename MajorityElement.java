@@ -16,20 +16,36 @@ public class MajorityElement {
 		System.out.println("----ShowResults----");
 		System.out.println(Arrays.toString(nums));
 
-		int rs = majorityElementI(nums);
+		int rs = majorityElement(nums);
 		System.out.printf("Majority Element: %d\n\n", rs);
 	}
 
 	// Majority element is the element that appears more than
 	// n / 2 times, n = nums.length
 
+	// Greedy approach.
+	// Time: O(n), space: O(1)
+	public static int majorityElement(int[] nums) {
+		int currValue = nums[0], countOccurences = 0; // init dummy values.
+		
+		for(int i = 0; i < nums.length; ++i) {
+			if(countOccurences == 0) {
+				currValue = nums[i];
+				countOccurences = 1;
+			} else if(currValue == nums[i]) ++countOccurences;
+			else --countOccurences;
+		}
+
+		return currValue;
+	}
+
 	// Time: O(nlogn), space: O(1)
 	public static int majorityElementI(int[] nums) {
-		Arrays.sort(nums);
+		Arrays.sort(nums); // time: O(nlogn)
 		
 		int countOccurences = 1;
 		int currValue = nums[0];
-		for(int i = 1; i < nums.length; ++i) {
+		for(int i = 1; i < nums.length; ++i) { // time: O(n)
 			if(nums[i] == currValue) countOccurences++;
 			else {
 				countOccurences = 1;
