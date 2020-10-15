@@ -34,7 +34,7 @@ public class IntersectionOfTwoLinkedListMayHaveCycle {
 
 		slow = l2;
 		fast = l2;
-		while(fast.next != null && fast != null) {
+		while(fast != null && fast.next != null) {
 			fast = fast.next.next;
 			slow = slow.next;
 			if(slow == fast && slow != null && fast != null) break;
