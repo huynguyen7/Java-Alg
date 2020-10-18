@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// element-prog 19.1
+// leetcode 490, element-prog 19.1
 public class SearchAMaze {
 	public static void main(String[] args) {
 		int[][] maze1 = {
