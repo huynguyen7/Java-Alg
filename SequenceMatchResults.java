@@ -8,7 +8,7 @@ import java.util.HashSet;
 // Constraints:
 // Each team in the sequence has beaten the next team in the sequence.
 
-// element-prog bootcamp 20
+// element-prog bootcamp 19
 public class SequenceMatchResults {
 	public static void main(String[] args) {
 		List<MatchResult> matchResults1 = new ArrayList<>();
