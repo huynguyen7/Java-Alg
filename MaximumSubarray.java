@@ -37,7 +37,6 @@ public class MaximumSubarray {
 			nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
 			maxSum = Math.max(maxSum, nums[i]);
 		}
-		System.out.println(Arrays.toString(nums));
 		
 		return maxSum;
 	}
