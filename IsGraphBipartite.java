@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Deque;
 import java.util.LinkedList;
 
-// leetcode 785.
+// leetcode 785, element-prog 19.6
 public class IsGraphBipartite {
 	public static void main(String[] args) {
 		int[][] graph1 = {{1,3}, {0,2}, {1,3}, {0,2}};
