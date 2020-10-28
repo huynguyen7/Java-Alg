@@ -24,7 +24,6 @@ public class ConstructStringFromBinaryTree {
 
 	// Time: O(n), space: O(n)
 	public static String tree2str(TreeNode root) {
-		if(root == null) return "()";
 		return dfs(root);
 	}
 
