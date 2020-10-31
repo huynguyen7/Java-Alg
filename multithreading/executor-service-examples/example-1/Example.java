@@ -4,6 +4,7 @@ import java.util.concurrent.Executors;
 // This code will gives all the task 
 // for defined number of cores to execute.
 
+// Basic example, just show how to use ExecutorService with ThreadsPool.
 public class Example {
 	public static void main(String[] args) {
 		// Get num of cores
