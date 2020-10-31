@@ -14,10 +14,11 @@ public class Fibonacci extends RecursiveTask<Integer> {
             Fibonacci f1 = new Fibonacci(n - 1);
             f1.fork(); // add new sub task to thread's deque.
             Fibonacci f2 = new Fibonacci(n - 2);
-            f2.fork(); // add new sub task to thread's deque.
+            //f2.fork(); // add new sub task to thread's deque.
 
 			// join() waits for those two sub tasks to finish.
-            return f1.join() + f2.join();
+			return f2.compute() + f1.join();
+            //return f1.join() + f2.;
         }
     }
 }

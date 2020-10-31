@@ -24,7 +24,8 @@ public class Example {
     }
 
     private static void printTimeInParallel(int n) {
-        ForkJoinPool pool = new ForkJoinPool();
+        //ForkJoinPool pool = new ForkJoinPool();
+		ForkJoinPool pool = ForkJoinPool.commonPool();
         ForkJoinTask<Integer> f = new Fibonacci(n);
 
         double start = System.nanoTime();
