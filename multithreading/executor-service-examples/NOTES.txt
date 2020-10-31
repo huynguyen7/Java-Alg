@@ -1,0 +1,2 @@
+HOW TO DECIDE AN IDEAL THREAD POOL SIZE
+https://engineering.zalando.com/posts/2019/04/how-to-set-an-ideal-thread-pool-size.html
