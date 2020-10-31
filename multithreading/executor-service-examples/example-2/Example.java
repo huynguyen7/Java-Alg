@@ -45,6 +45,23 @@ public class Example {
 			System.out.printf("%d == %d : %b\n", factorials.get(i), rs, Integer.compare(factorials.get(i), rs) == 0);
 		}
 
+		// This code will calculated all and
+		// print out at the same time.
+		from = 1;
+		list = new ArrayList<>();
+		while(from <= to) {
+			list.add(service.submit(new Task(from)));
+			from++;
+		}
+		
+		Thread.sleep(2000); // wait 2s in order to finish all the tasks.
+		System.out.println();
+		for(i = 0; i < list.size(); ++i) {
+			Future<Integer> future = list.get(i);
+			Integer rs = future.get();
+			System.out.printf("%d == %d : %b\n", factorials.get(i), rs, Integer.compare(factorials.get(i), rs) == 0);
+		}
+
 		service.shutdown();
 		System.out.println();
 	}
