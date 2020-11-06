@@ -2,7 +2,7 @@ import java.util.concurrent.RecursiveTask;
 
 public class ArraySum extends RecursiveTask<Integer> {
 	
-	private static final int SIZE_THRESHOLD = 10;
+	private static final int SIZE_THRESHOLD = 1000;
 	private int[] nums;
 	private int from;
 	private int to;

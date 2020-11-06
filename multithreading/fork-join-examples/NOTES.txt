@@ -1,3 +1,4 @@
 GOOD EXPLANATION:
 https://www.pluralsight.com/guides/introduction-to-the-fork-join-framework
 https://www.youtube.com/watch?v=5wgZYyvIVJk
+https://www.codejava.net/java-core/concurrency/understanding-java-fork-join-framework-with-examples
