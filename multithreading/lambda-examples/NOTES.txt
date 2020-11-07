@@ -1,0 +1,27 @@
+GOOD EXPLANATION
+https://www.tutorialspoint.com/how-to-use-consumer-and-biconsumer-interfaces-in-lambda-expression-in-java
+https://www.baeldung.com/java-8-double-colon-operator
+https://www.baeldung.com/java-8-functional-interfaces
+https://medium.com/swlh/understanding-java-8s-consumer-supplier-predicate-and-function-c1889b9423d
+
+Consumer vs Function vs Supplier:
+	- Consumer does not return any value
+	- Function, Supplier returns value
+	- Predicate returns boolean value.
+
+--------
+Consumer interface in JAVA accepts a lambda expression (with only ONE argument) without returning any value.
+BiConsumer interface  in JAVA accepts a lambda expression (with TWO argument) without returning any value.
+
+--------
+Function interface in JAVA accepts a lambda expression (with only ONE argument) and return defined type. 
+Function<T, R> -> T is type of input argument, R is type of output.
+BiFunction is the same as Function but accepts two arguments.
+
+--------
+Supplier interface in JAVA accepts a lambda expression(with NO argument) and return defined type. 
+Supplier<T> -> return value with type T.
+
+--------
+Predicate interface in JAVA accepts a lambda expression(with one argument) and return a boolean type. Predicate is usually used for filter() in stream.
+Predicate<T> accepts argument type T.
