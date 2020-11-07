@@ -9,7 +9,7 @@ public class DeadlockDetection {
 		int[][] graph2 = {{1,2},{},{3},{0}};
 		showResults(graph2); // expect true
 
-		int[][] graph3 = {{1},{2},{3}, {}};
+		int[][] graph3 = {{1},{2},{3},{}};
 		showResults(graph3); // expect false
 	}
 
