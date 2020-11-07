@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Comparator;
+import java.util.Optional;
+import java.util.Set;
 
 public class Example {
 	public static void main(String[] args) {
@@ -11,6 +14,7 @@ public class Example {
 		Student[] students = generateRandom(n);
 		
 		executeInSequential(students);
+		System.out.println();
 		executeInParallelStream(students);
 	}
 
@@ -46,10 +50,10 @@ public class Example {
 		
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken: " + timeTaken + " ms.");
-		
+		System.out.println("Time taken in sequential: " + timeTaken + " ms.");
 		System.out.println("Average Age Of Enrolled Students: " + avgAgeOfEnrolledStudents);
 		System.out.println("Most Common First Name Of Inactive Students: " + mostCommonFirstNameOfInactiveStudents);
+		System.out.println(mapNameInactive.toString());
 		System.out.println("Number of Failed Students Older Than 20: " + numFailedStudentsOlderThan20 + "\n");
 	}
 
@@ -62,14 +66,31 @@ public class Example {
 								.mapToInt(student -> student.age)
 								.average()
 								.getAsDouble();
-		String mostCommonFirstNameOfInactiveStudents = Stream.of(students)
-.parallel()
-.filter(student -> !student.isActive)
-.distinct()
+		Set<Map.Entry<String, Integer>> mapNameInactive = Stream.of(students)
+								.parallel()
+								.filter(student -> !student.isActive)
+								.collect(Collectors.toConcurrentMap(
+									student -> student.firstName,
+									student -> 1,
+									Integer::sum
+								))
+								.entrySet();
+		String mostCommonFirstNameOfInactiveStudents = mapNameInactive.parallelStream()
+								.max(Comparator.comparing(Map.Entry::getValue))
+								.map(Map.Entry::getKey)
+								.orElse(null);
 
+		int numFailedStudentsOlderThan20 = (int) Stream.of(students)
+								.filter(student -> !student.testPassed && student.age > 20)
+								.count();
+								
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken: " + timeTaken + " ms.");
+		System.out.println("Time taken in parallel stream: " + timeTaken + " ms.");
+		System.out.println("Average Age Of Enrolled Students: " + avgAgeOfEnrolledStudents);
+		System.out.println("Most Common First Name Of Inactive Students: " + mostCommonFirstNameOfInactiveStudents);
+		System.out.println(mapNameInactive.toString());
+		System.out.println("Number of Failed Students Older Than 20: " + numFailedStudentsOlderThan20 + "\n");
 	}
 
 	private static final String[] names = {"HUY", "TOAN", "SANG", "QUOC", "HOA", "HUNG", "DUY", "AN"};
@@ -80,7 +101,7 @@ public class Example {
 		for(int i = 0; i < students.length; ++i)
 			students[i] = new Student(
 							rand.nextInt(100),
-							names[rand.nextInt(8)],
+							new String(names[rand.nextInt(8)]),
 							rand.nextBoolean(),
 							rand.nextBoolean(),
 							rand.nextBoolean()
@@ -88,7 +109,7 @@ public class Example {
 		return students;
 	}
 
-	static class Student implements Comparable{
+	static class Student {
 		int age;
 		String firstName;
 		boolean isEnrolled;
@@ -101,10 +122,6 @@ public class Example {
 			this.isEnrolled = isEnrolled;
 			this.isActive = isActive;
 			this.testPassed = testPassed;
-		}
-
-		public int compareTo(Student another) {
-			return firstName.compareTo(another.firstName);
 		}
 	}
 }
