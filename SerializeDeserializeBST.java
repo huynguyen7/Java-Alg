@@ -28,7 +28,7 @@ public class SerializeDeserializeBST {
 		return s.toString();
 	}
 
-    // Decodes your encoded data to tree.
+	// Decodes your encoded data to tree.
 	// Time: O(n), space: O(n)
 	public TreeNode deserialize(String data) {
 		String[] tokens = data.split("-");
