@@ -23,7 +23,7 @@ public class UniquePaths {
 	public static int uniquePaths(int m, int n) {
 		int[][] cache = new int[m][n];
 
-		// Only way for first row and first col.
+		// Only one way for first row and first col.
 		for(int i = 0; i < m; ++i)
 			cache[i][0] = 1;
 		for(int j = 0; j < n; ++j)
