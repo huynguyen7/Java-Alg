@@ -1,3 +1,4 @@
 Good explanation:
 https://www.javatpoint.com/multithreading-in-java
 https://www.javatpoint.com/synchronization-in-java
+https://www.javaprogramto.com/2019/07/lambda-accessing-Variable.html
