@@ -12,7 +12,11 @@ public class ArrayAverage {
 		printTimeInSequential(nums.clone(), iterations);
 		printTimeInParallelFor(nums, iterations);
 		printTimeInParallelForChunking(nums, iterations);
+		printTimeInParallelBarrier(nums, iterations);
 	}
+
+	final static int CHUNK_SIZE = 1000; // CHANGE THIS VALUE.
+	final static int NUM_TASKS = 4; // CHANGE THIS VALUE.
 
 	private static void printTimeInSequential(double[] nums, final int iterations) {
 		if(nums == null || nums.length == 0) return;
@@ -62,7 +66,6 @@ public class ArrayAverage {
 	private static void printTimeInParallelForChunking(final double[] nums, final int iterations) {
 		if(nums == null || nums.length == 0) return;
 
-		final int CHUNK_SIZE = 1000; // CHANGE THIS VALUE.
 		int n = nums.length;
 		rs1 = new double[n];
 		nums1 = cloneArr(nums);
@@ -85,9 +88,35 @@ public class ArrayAverage {
 	private static void printTimeInParallelBarrier(double[] nums, final int iterations) {
 		if(nums == null || nums.length == 0) return;
 
+		Phaser[] phasers = new Phaser[nums.length];
+		for(int i = 0; i < phasers.length; ++i)
+			phasers[i] = new Phaser(1); // assign only 1 party.
+
+		int n = nums.length;
+		rs1 = new double[n];
+		nums1 = cloneArr(nums);
+
 		double startTime = System.nanoTime();
+
+		PCDP.forall(1, n - 2, (int j) -> {
+			
+			for(int i = 0; i < iterations; ++i) {
+				rs1[j] = (nums1[j - 1] + nums1[j + 1]) / 2.0;
+
+				phasers[j].arrive();
+				if(j > 1) phasers[j - 1].awaitAdvance(i);
+				if(j < n - 2) phasers[j + 1].awaitAdvance(i);
+
+				double[] tmp = nums1;
+				nums1 = rs1;
+				rs1 = tmp;
+			}
+		});
+
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
+		for(Phaser ph: phasers)
+			ph.forceTermination();
 		System.out.println("Time taken in PARALLEL BARRIER: " + timeTaken + " ms.");
 	}
 

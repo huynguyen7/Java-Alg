@@ -1,0 +1,2 @@
+https://java2blog.com/difference-between-countdownlatch-and-cyclicbarrier-in-java/
+https://www.youtube.com/watch?v=J3QZ5gfCtAg
