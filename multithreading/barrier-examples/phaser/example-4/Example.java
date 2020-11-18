@@ -6,16 +6,22 @@ import java.util.concurrent.*;
 public class Example {
 	private static final long JOB_TIME = 10; // CHANGE THIS VALUE.
 
+	// Time expected running in PARALLEL should be
+	// timeTaken in SEQUENTIAL / 3.
+	// since nth iteration runs separately.
+
 	/*
+	PARALLEL
+	
 		------------------------> MAIN
 		t0      t1      t2
 		|       .       .
 	10	|       .       .
 		|       .       .
-		x       |       .
+		x ----> |       .
 		        |       .
 		        |       .
-		        x       |
+		        x ----> |
 		                |
 		                |
 		                x
