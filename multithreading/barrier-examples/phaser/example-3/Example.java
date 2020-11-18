@@ -93,7 +93,7 @@ public class Example {
 		ph1.forceTermination();
 		ph2.forceTermination();
 
-		System.out.println("Time taken in ASYNC PARALLEL: " + (timeTaken/1e9) + " seconds.");
+		System.out.println("Time taken in PARALLEL: " + (timeTaken/1e9) + " seconds.");
 
 		return timeTaken;
 	}
