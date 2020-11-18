@@ -31,7 +31,7 @@ public class  MatrixMultiplication {
 
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken in SEQUENTIAL: " + timeTaken + " ms.");
+		System.out.println("Time taken in SEQUENTIAL: " + (timeTaken / 1e9) + " seconds.");
 		//for(int[] row: rs)
 			//System.out.println(Arrays.toString(row));
 	}
@@ -50,7 +50,7 @@ public class  MatrixMultiplication {
 
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken in PARALLEL: " + timeTaken + " ms.");
+		System.out.println("Time taken in PARALLEL: " + (timeTaken / 1e9) + " seconds.");
 
 		//for(int[] row: rs)
 			//System.out.println(Arrays.toString(row));
@@ -83,6 +83,6 @@ public class  MatrixMultiplication {
 
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken in PARALLEL CHUNKING: " + timeTaken + " ms.");
+		System.out.println("Time taken in PARALLEL CHUNKING: " + (timeTaken / 1e9) + " seconds.");
 	}
 }

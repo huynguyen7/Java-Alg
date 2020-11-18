@@ -35,7 +35,7 @@ public class Example {
 
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken in sequential: " + timeTaken + " ms");
+		System.out.println("Time taken in sequential: " + (timeTaken / 1e9) + " seconds.");
 		System.out.println("Average age = " + avg);
 	}
 
@@ -51,7 +51,7 @@ public class Example {
 		
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken in parallel stream: " + timeTaken + " ms");
+		System.out.println("Time taken in parallel stream: " + (timeTaken / 1e9) + " seconds.");
 		System.out.println("Average age = " + avg);
 	}
 

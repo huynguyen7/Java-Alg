@@ -19,7 +19,7 @@ public class Example {
 		int sum2 = Arrays.stream(nums)
 						.sum();
 		double endTime = System.nanoTime();
-		System.out.println("Time taken with serial: " + (endTime - startTime) + " ms.");
+		System.out.println("Time taken with serial: " + ((endTime - startTime)/ 1e9) + " seconds.");
 		System.out.println("Sum = " + (sum1 + sum2) + "\n");
 	}
 
@@ -37,7 +37,7 @@ public class Example {
 						.sum();
 		int sum2 = future.get().intValue();
 		double endTime = System.nanoTime();
-		System.out.println("Time taken with parallel: " + (endTime - startTime) + " ms.");
+		System.out.println("Time taken with parallel: " + ((endTime - startTime) / 1e9) + " seconds.");
 		System.out.println("Sum = " + (sum1 + sum2) + "\n");
 
 		service.shutdown();

@@ -22,7 +22,7 @@ public class ArraySum {
 			sum += nums[i];
 		double endTime = System.nanoTime();
 
-		System.out.println("Time taken in sequential: " + (endTime - startTime) + " ms.");
+		System.out.println("Time taken in sequential: " + ((endTime - startTime)/1e9) + " seconds.");
 		System.out.println("Sum = " + sum + "\n");
 	}
 
@@ -53,7 +53,7 @@ public class ArraySum {
 		
 		double endTime = System.nanoTime();
 
-		System.out.println("Time taken in parallel: " + (endTime - startTime) + " ms.");
+		System.out.println("Time taken in parallel: " + ((endTime - startTime) / 1e9) + " seconds.");
 		System.out.println("Sum = " + sum + "\n");
 
 		service.shutdown();		

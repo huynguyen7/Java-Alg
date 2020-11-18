@@ -29,7 +29,7 @@ public class Example {
 			map.put(word, map.getOrDefault(word, 0) + 1);
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken in serial: " + timeTaken + " ms.");
+		System.out.println("Time taken in serial: " + (timeTaken / 1e9) + " seconds.");
 		System.out.println(map.toString() + "\n");
 	}
 
@@ -43,7 +43,7 @@ public class Example {
 									Integer::sum));
 		double endTime = System.nanoTime();
 		double timeTaken = endTime - startTime;
-		System.out.println("Time taken in parallel stream: " + timeTaken + " ms.");
+		System.out.println("Time taken in parallel stream: " + (timeTaken / 1e9) + " seconds.");
 		System.out.println(map.toString() + "\n");
 	}
 
