@@ -11,7 +11,7 @@ public class QuickSort {
 	private static void showResults(Comparable[] arr) {
 		Comparable[] clone = arr.clone();
 		printTimeSequential(arr);
-		printtimeParallel(clone);
+		printTimeParallel(clone);
 		System.out.println();
 	}
 
