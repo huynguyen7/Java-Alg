@@ -139,7 +139,7 @@ public class ArrayAverage {
 
 		for(int i = 0; i < NUM_TASKS; ++i) {
 			int j = i;
-			new Thread(() -> {
+			threads[i] = new Thread(() -> {
 				for(int iter = 0; iter < iterations; ++iter) {
 					int left = j * (n / NUM_TASKS) + 1;
 					rs1[left] = nums1[left - 1] + nums1[left + 1] / 2.0;
@@ -157,7 +157,15 @@ public class ArrayAverage {
 					nums1 = rs1;
 					rs1 = tmp;
 				}
-			}).start();
+			});
+			threads[i].start();
+		}
+
+		try {
+			for(Thread t: threads)
+				t.join();
+		} catch(InterruptedException e) {
+			e.printStackTrace();
 		}
 
 		double endTime = System.nanoTime();
@@ -182,7 +190,7 @@ public class ArrayAverage {
 
 		for(int i = 0; i < NUM_TASKS; ++i) {
 			int j = i;
-			new Thread(() -> {
+			threads[i] = new Thread(() -> {
 				for(int iter = 0; iter < iterations; ++iter) {
 					int left = j * (n / NUM_TASKS) + 1;
 					rs1[left] = nums1[left - 1] + nums1[left + 1] / 2.0;
@@ -193,7 +201,7 @@ public class ArrayAverage {
 					// Signal arrival on phaser
 					int currentPhase = ph.arrive();
 					// FUZZY PART
-					// Fuzzy means arrive and do something, then wait foro thers.
+					// Fuzzy means arrive and do something, then wait for others.
 					for(int k = left + 1; k <= right - 1; ++k)
 						rs1[k] = (rs1[k - 1] + rs1[k + 1]) / 2.0;
 
@@ -203,7 +211,15 @@ public class ArrayAverage {
 					nums1 = rs1;
 					rs1 = tmp;
 				}
-			}).start();
+			});
+			threads[i].start();
+		}
+
+		try {
+			for(Thread t: threads)
+				t.join();
+		} catch(InterruptedException e) {
+			e.printStackTrace();
 		}
 
 		double endTime = System.nanoTime();
@@ -224,9 +240,6 @@ public class ArrayAverage {
 	}
 
 	private static double[] cloneArr(final double[] nums) {
-		double[] rs = new double[nums.length];
-		for(int i = 0; i < rs.length; ++i)
-			rs[i] = nums[i];
-		return rs;
+		return nums.clone();
 	}
 }
