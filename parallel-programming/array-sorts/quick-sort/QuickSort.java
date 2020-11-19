@@ -30,7 +30,7 @@ public class QuickSort {
 		System.out.println("Time taken in SEQUENTIAL: " + timeTaken + " seconds.");
 	} 
 
-	private static void printtimeParallel(Comparable[] arr) {
+	private static void printTimeParallel(Comparable[] arr) {
 		System.out.println("----PARALLEL----");
 		//System.out.println(Arrays.toString(arr));
 
