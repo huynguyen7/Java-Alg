@@ -1,0 +1,3 @@
+* Deadlock describes a situation where two or more threads are blocked forever, waiting for each other. 
+
+https://docs.oracle.com/javase/tutorial/essential/concurrency/deadlock.html

@@ -24,9 +24,10 @@ public class QuickSort {
 		quickSortSequential(arr, 0, arr.length - 1);
 
 		double endTime = System.nanoTime();
-		double timeTaken = endTime - startTime;
+		double timeTaken = endTime - startTime / 1e9;
 		//System.out.println(Arrays.toString(arr));
-		System.out.println("Time taken in SEQUENTIAL: " + timeTaken + " ms.");
+		//assertion(arr);
+		System.out.println("Time taken in SEQUENTIAL: " + timeTaken + " seconds.");
 	} 
 
 	private static void printtimeParallel(Comparable[] arr) {
@@ -39,9 +40,10 @@ public class QuickSort {
 		quickSortTask.invoke();
 
 		double endTime = System.nanoTime();
-		double timeTaken = endTime - startTime;
+		double timeTaken = endTime - startTime / 1e9;
 		//System.out.println(Arrays.toString(arr));
-		System.out.println("Time taken in PARALLEL: " + timeTaken + " ms.");
+		//assertion(arr);
+		System.out.println("Time taken in PARALLEL: " + timeTaken + " seconds.");
 	}
 
 	private static class QuickSortTask extends RecursiveAction {
@@ -109,5 +111,14 @@ public class QuickSort {
 		for(int i = 0; i < n; ++i)
 			arr[i] = Integer.valueOf(rand.nextInt(100));
 		return arr;
+	}
+
+	private static void assertion(Comparable[] arr) {
+		for(int i = 1; i < arr.length; ++i) {
+			if(arr[i].compareTo(arr[i - 1]) < 0) {
+				System.out.println("WRONG!!!");
+				break;
+			}
+		}
 	}
 }

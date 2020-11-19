@@ -1,0 +1,5 @@
+* Only one thread can own a Lock object at a time
+
+* GOOD EXPLANATION, TUTORIAL:
+https://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html
+https://www.youtube.com/watch?v=N0mMm5PF5Ow&list=PLhfHPmPYPPRk6yMrcbfafFGSbE2EPK_A6&index=10

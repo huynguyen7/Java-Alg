@@ -1,0 +1,18 @@
+* Concurrent Programming:
+https://en.wikipedia.org/wiki/Concurrent_computing
+
+* Two kinds of locks:
+- Structured locks (using 'synchronized')
+- Unstructured locks (mutual exclusions)
+
+* Mutual Exclusion:
+https://en.wikipedia.org/wiki/Mutual_exclusion
+
+* Types of mutual exclusions (locks):
+- Locks
+- Readers-writer locks
+- Recursive locks
+- Semaphores
+- Monitors
+- Message passing
+- Tuple space

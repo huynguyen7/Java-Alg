@@ -1,5 +1,9 @@
-Good explanation:
+* Good explanation:
 https://www.javatpoint.com/multithreading-in-java
 https://www.javatpoint.com/synchronization-in-java
 https://www.javaprogramto.com/2019/07/lambda-accessing-Variable.html
 https://www.codejava.net/java-core/collections/understanding-collections-and-thread-safety-in-java
+
+* Articles about parallel algorithms:
+https://anandgharu.wordpress.com/
+https://anandgharu.files.wordpress.com/2020/11/hpc-unit-5-parallel-algorithms-sorting-and-graph-min.pdf

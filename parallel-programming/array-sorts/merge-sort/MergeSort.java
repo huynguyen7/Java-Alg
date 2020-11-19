@@ -24,10 +24,10 @@ public class MergeSort {
 		mergeSortSequential(arr);
 		
 		double endTime = System.nanoTime();
-		double timeTaken = endTime - startTime;
+		double timeTaken = endTime - startTime / 1e9;
 
 		//System.out.println(Arrays.toString(arr));
-		System.out.println("Time taken in SEQUENTIAL: " + timeTaken + " ms.");
+		System.out.println("Time taken in SEQUENTIAL: " + timeTaken + " seconds.");
 	}
 
 	private static void printTimeInParallel(Comparable[] arr) {
@@ -40,10 +40,10 @@ public class MergeSort {
 		mergeSortTask.invoke();
 		
 		double endTime = System.nanoTime();
-		double timeTaken = endTime - startTime;
+		double timeTaken = endTime - startTime / 1e9;
 
 		//System.out.println(Arrays.toString(arr));
-		System.out.println("Time taken in PARALLEL: " + timeTaken + " ms.");
+		System.out.println("Time taken in PARALLEL: " + timeTaken + " seconds.");
 	}
 
 	private static class MergeSortTask extends RecursiveAction {
