@@ -1,3 +1,5 @@
+* GOOD EXAMPLE TO SEE THE DIFFERENCE BETWEEN DEADLOCKS, LIVELOCKS.
+
 * EXPLANATION
 https://www.coursera.org/learn/concurrent-programming-in-java/lecture/QAIAw/1-5-dining-philosophers
 

@@ -8,7 +8,7 @@ https://en.wikipedia.org/wiki/Concurrent_computing
 * Mutual Exclusion:
 https://en.wikipedia.org/wiki/Mutual_exclusion
 
-* Types of mutual exclusions (locks):
+* Types of mutual exclusions (unstructured locks):
 - Locks
 - Readers-writer locks
 - Recursive locks
