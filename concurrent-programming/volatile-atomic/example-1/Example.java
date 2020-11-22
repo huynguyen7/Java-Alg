@@ -1,6 +1,5 @@
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.Random;
 import java.util.Arrays;
 import java.util.stream.*;
 import java.util.function.IntBinaryOperator;
@@ -14,7 +13,7 @@ import java.util.function.IntBinaryOperator;
 public class Example {
 	public static void main(String[] args) {
 		int n = Integer.parseInt(args[0]); // Use large integer as input.
-		int[] nums = generateRandomIntArr(n);
+		int[] nums = generateIntArr(n);
 		int sum = getArrSum(nums);
 
 		// Split array to half and do calculations on each half on each thread.
@@ -143,12 +142,9 @@ public class Example {
 		}
 	}
 
-	private static int[] generateRandomIntArr(int n) {
+	private static int[] generateIntArr(int n) {
 		int[] nums = new int[n];
-		Random random = new Random();
-		for(int i = 0; i < nums.length; ++i)
-			nums[i] = 1;
-
+		Arrays.fill(nums, 1); // all elements are 1.
 		return nums;
 	}
 
