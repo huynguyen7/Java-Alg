@@ -65,6 +65,7 @@ public class Solution {
 			}
 		}
 
+		// simulation of doing task.
 		public void eat() {
 			try {
 				Thread.sleep(100);

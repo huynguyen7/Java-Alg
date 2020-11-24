@@ -81,7 +81,7 @@ public class BankTransactionsUsingGlobalIsolation {
 		});
 	}
 
-	// emulation of doing task.
+	// simulation of doing task.
 	private void busyWork(final int srcAccountId, int destAccountId) {
 		try {
 			Thread.sleep(1); // 1 ms. CHANGE THIS VALUE.
