@@ -1,0 +1,2 @@
+* GOOD EXPLANATION:
+https://medium.com/@mena.meseha/difference-between-distributed-and-cluster-aca9d50c2c44

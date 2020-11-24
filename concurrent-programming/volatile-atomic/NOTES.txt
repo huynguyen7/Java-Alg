@@ -1,5 +1,6 @@
 * GOOD EXPLANATION:
 https://www.youtube.com/watch?v=WH5UvQJizH0&list=PLhfHPmPYPPRk6yMrcbfafFGSbE2EPK_A6&index=1
+https://www.ibm.com/developerworks/library/j-jtp11234/
 
 - volatile: Use for flag checking when multiple thread access. This type of variable will tell the JVM not to store or get the value from cache, instead directly go to the main memory (RAM..).
 - atomic: Use for counters, caches. Same with volatile, but make the object SYNCHRONIZED, better use for READ-WRITE or WRITE-WRITE operations to prevent Data Races.

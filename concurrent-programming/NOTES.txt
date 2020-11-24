@@ -1,5 +1,6 @@
 * Concurrent Programming:
 https://en.wikipedia.org/wiki/Concurrent_computing
+https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock
 
 * Two kinds of locks:
 - Structured locks (using 'synchronized')
