@@ -1,2 +1,3 @@
 * EXPLANATION:
 https://www.coursera.org/learn/concurrent-programming-in-java/lecture/jD187/demonstration-locking-and-synchronization
+https://docs.oracle.com/javase/tutorial/essential/concurrency/syncmeth.html

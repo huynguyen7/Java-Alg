@@ -1,0 +1,30 @@
+* GOOD EXPLANATION:
+https://en.wikipedia.org/wiki/Actor_model
+https://www.coursera.org/learn/concurrent-programming-in-java/lecture/OxBgq/3-1-actors
+
+* Here is how an actor looks like..
+.------------------------.
+|         ACTOR          |
+|                        |
+|  .------------------.  |
+|  |      MAILBOX     |  |
+|  '------------------'  |
+|                        |
+|  .------------------.  |
+|  |      METHODS     |  |
+|  '------------------'  |
+|                        |
+|  .------------------.  |
+|  |   LOCAL STATE    |  |
+|  '------------------'  |
+|                        |
+'------------------------'
+
+* Difference between an actor vs a thread is:
+- An actor only responds to messages (stored in MAILBOX).
+=> Actors are REACTIVE.
+
+* EXAMPLE: You have an email account, and that's your mailbox. If other people want you to do things they send you email (stored in MAILBOX). But they cannot directly interfere with your LOCAL STATES. They send you requests in the MAILBOX, and you process them one at a time (using METHODS). So that ensures the integrity of the concurrency.
+
+* Why we need to use actors over object-based isolations?
+- One limitation of locks, and even isolated sections, is that, while many threads might correctly control the access to a shared object (e.g., by using object-based isolation) it only takes one thread that accesses the object directly to create subtle and hard-to-discover concurrency errors. The Actor model avoids this problem by forcing all accesses to an object to be isolated by default. The object is part of the local state of an actor, and cannot be accessed directly by any other actor. 

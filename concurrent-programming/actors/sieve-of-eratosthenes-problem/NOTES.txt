@@ -1,0 +1,6 @@
+* GOOD EXPLANATION:
+https://www.coursera.org/learn/concurrent-programming-in-java/lecture/6yn4H/demonstration-sieve-of-eratosthenes-using-actor-parallelism
+
+* Sieve of Eratosthenes: 
+- Get all the prime numbers from 2 -> n. n is the user's input.
+- Using data pipelining in parallel with actors (acting as a filter and passing messages between filters with filters).
