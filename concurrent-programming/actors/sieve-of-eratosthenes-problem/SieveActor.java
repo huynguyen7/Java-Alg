@@ -43,7 +43,7 @@ public class SieveActor extends Actor {
 	}
 
 	public void add(int num) {
-		localPrimes.add(2);
+		localPrimes.add(num);
 	}
 
 	public SieveActor getNextActor() {

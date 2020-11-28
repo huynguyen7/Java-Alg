@@ -1,0 +1,6 @@
+* GOOD EXPLANATION:
+https://www.coursera.org/learn/concurrent-programming-in-java/lecture/3FBL3/4-1-optimistic-concurrency
+https://en.wikipedia.org/wiki/Optimistic_concurrency_control
+
+The optimistic concurrency pattern, which can be used to improve the performance of concurrent data structures.
+There should be no locks, isolations or actors in optimistic concurrency.
