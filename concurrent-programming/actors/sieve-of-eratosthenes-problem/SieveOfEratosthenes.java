@@ -82,7 +82,7 @@ public class SieveOfEratosthenes {
 		double startTime = System.nanoTime();
 
 		PCDP.finish(() -> { // wait for all tasks in async to finish.
-			for(int num = 3; num <= Math.sqrt(n); num += 2)
+			for(int num = 3; num <= n; num += 2)
 				actor.send(num);
 			
 			actor.send(0); // terminate actors.
@@ -105,8 +105,8 @@ public class SieveOfEratosthenes {
 
 	// Use 'java -ea' SieveOfEratosthenes for assertions.
 	private void assertion(List<Integer> list1, List<Integer> list2) {
-		assert(list1.size() == list2.size()): "INVALID LIST SIZE.";
+		assert(list1.size() == list2.size()): String.format("INVALID LIST SIZE %d != %d.", list1.size(), list2.size());
 		for(int i = 0; i < list1.size(); ++i)
-			assert(list1.get(i).compareTo(list2.get(i)) == 0): "INVALID VALUE.";
+			assert(list1.get(i).compareTo(list2.get(i)) == 0): String.format("INVALID VALUE %d != %d.", list1.get(i), list2.get(i));
 	}
 }

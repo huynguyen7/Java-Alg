@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class SieveActor extends Actor {
-	private final int MAX_SIZE_FILTER = 10_000;
+	private final int MAX_SIZE_FILTER = 10_000; // CHANGE THIS VALUE FOR EXPERIMENTS.
 	private List<Integer> localPrimes;
 	private SieveActor nextActor;
 
