@@ -4,3 +4,7 @@ https://en.wikipedia.org/wiki/Optimistic_concurrency_control
 
 The optimistic concurrency pattern, which can be used to improve the performance of concurrent data structures.
 There should be no locks, isolations or actors in optimistic concurrency.
+
+* KEY POINTS:
+- Optimistic concurrency means: check if the value has been changed, if it is NOT, do the UPDATE OPERATION, else continue inside an infinite loop until find a value that has not been changed.
+- Always think about COMPARE_AND_SET(). This method is the keypoint of optimistic concurrency.
