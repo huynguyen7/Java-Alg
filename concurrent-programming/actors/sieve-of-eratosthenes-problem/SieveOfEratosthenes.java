@@ -67,7 +67,7 @@ public class SieveOfEratosthenes {
 		double endTime = System.nanoTime();
 		double timeTaken = (endTime - startTime) / 1e6; // milliseconds. 
 
-		System.out.printf("\nTime taken in SEQUENTIAL: %10.3f ms.\n", timeTaken);
+		System.out.printf("\nTime taken in SEQUENTIAL: %10.3f ms\tNUM_PRIMES = %d.\n", timeTaken, rs.size());
 		//System.out.println(rs.toString());
 
 		return rs;
@@ -76,7 +76,7 @@ public class SieveOfEratosthenes {
 	private List<Integer> printTimeInParallel(final int numThreads) {
 		SystemProperty.numWorkers.setProperty(String.valueOf(numThreads)); // Set num threads.
 
-		final SieveActor actor = new SieveActor(); 
+		final SieveActor actor = new SieveActor();
 		actor.add(2); // just to add 2 as the base case.
 
 		double startTime = System.nanoTime();
@@ -90,7 +90,6 @@ public class SieveOfEratosthenes {
 
 		double endTime = System.nanoTime();
 		double timeTaken = (endTime - startTime) / 1e6; // milliseconds.
-		System.out.printf("\tNUM_THREADS = %d\tTIME_TAKEN = %10.3f ms.\n", numThreads, timeTaken);
 		
 		List<Integer> rs = actor.getRs();
 		SieveActor tmpActor = actor.getNextActor();
@@ -99,6 +98,7 @@ public class SieveOfEratosthenes {
 			tmpActor = tmpActor.getNextActor();
 		}
 		//System.out.println(rs.toString());
+		System.out.printf("\tNUM_THREADS = %d\tTIME_TAKEN = %10.3f ms\tNUM_PRIMES = %d.\n", numThreads, timeTaken, rs.size());
 		
 		return rs;
 	}

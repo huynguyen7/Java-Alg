@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class SieveActor extends Actor {
-	private final int MAX_SIZE_FILTER = 10_000; // CHANGE THIS VALUE FOR EXPERIMENTS.
+	private final int MAX_SIZE_FILTER = 10_000; // Change this value for experiments.
 	private List<Integer> localPrimes;
 	private SieveActor nextActor;
 
@@ -25,10 +25,10 @@ public class SieveActor extends Actor {
 			if(localPrimes.size() < MAX_SIZE_FILTER) {
 				localPrimes.add(num);
 			} else if(nextActor != null) {
-				nextActor.send(num);
+				nextActor.send(msg);
 			} else {
 				nextActor = new SieveActor();
-				nextActor.send(num);
+				nextActor.send(msg);
 			}
 		}
 	}
