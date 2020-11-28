@@ -103,7 +103,7 @@ public class SieveOfEratosthenes {
 		return rs;
 	}
 
-	// Use 'java -ea' SieveOfEratosthenes for assertions.
+	// Use 'java -ea SieveOfEratosthenes' for assertions.
 	private void assertion(List<Integer> list1, List<Integer> list2) {
 		assert(list1.size() == list2.size()): String.format("INVALID LIST SIZE %d != %d.", list1.size(), list2.size());
 		for(int i = 0; i < list1.size(); ++i)
