@@ -2,9 +2,28 @@
 https://en.wikipedia.org/wiki/Concurrent_computing
 https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock
 
+* Linearizable:
+https://www.coursera.org/learn/concurrent-programming-in-java/lecture/2ZxOt/4-3-linearizability
+https://en.wikipedia.org/wiki/Linearizability
+
+* SUMMARY IN LEVEL OF CONCURRENCY:
+LOCKS -> ISOLATIONS -> ACTORS -> OPTIMISTIC CONCURRENCY.
+
 * Two kinds of locks:
 - Structured locks (using 'synchronized')
 - Unstructured locks (mutual exclusions)
+
+* Isolations:
+- Global isolations
+- Object-based isolations
+
+* Actors:
+- Using message passing programming model.
+- Have its own local states, instead of using shared resources like others.
+
+* Optimistic concurrency:
+- Not contain locks, isolations, actors.
+- Use compareAndSet() instead.
 
 * Mutual Exclusion:
 https://en.wikipedia.org/wiki/Mutual_exclusion
