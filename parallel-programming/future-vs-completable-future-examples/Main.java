@@ -19,6 +19,7 @@ public class Main {
 		printTimeInSequential(numOrders);
 		printTimeInParallelFuture(numOrders);
 		printTimeInParallelCompletableFuture(numOrders);
+		printTimeInParallelCompletableFutureAsync(numOrders);
 	}
 
 	private static void printTimeInSequential(final int numOrders) {
@@ -86,8 +87,8 @@ public class Main {
 		
 		for(int i = 0; i < numOrders; ++i) {
 			rs.add(CompletableFuture.supplyAsync(() -> simulationOfDoingTask(new Data("Order_Data"))) // get order
-				.thenApplyAsync(data -> simulationOfDoingTask(data)) // access payment.
-				.thenApplyAsync(data -> simulationOfDoingTask(data))); // ship order.
+				.thenApply(data -> simulationOfDoingTask(data)) // access payment.
+				.thenApply(data -> simulationOfDoingTask(data))); // ship order.
 		}
 
 		try {
@@ -102,6 +103,28 @@ public class Main {
 		System.out.printf("TIME TAKEN IN PARALLEL COMPLETABLE-FUTURE = %10.3f ms.\n", timeTaken);
 	}
 
+	private static void printTimeInParallelCompletableFutureAsync(final int numOrders) {
+		List<CompletableFuture<Data>> rs = new ArrayList<>();
+
+		double startTime = System.nanoTime();
+		
+		for(int i = 0; i < numOrders; ++i) {
+			rs.add(CompletableFuture.supplyAsync(() -> simulationOfDoingTask(new Data("Order_Data"))) // get order
+				.thenApplyAsync(data -> simulationOfDoingTask(data)) // access payment.
+				.thenApplyAsync(data -> simulationOfDoingTask(data))); // ship order.
+		}
+
+		try {
+			for(CompletableFuture<Data> c: rs)
+				c.get(); // wait till the completable tasks finished -> MORE ACCURATE FOR TIME MEASURING.
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
+		double endTime = System.nanoTime();
+		double timeTaken = (endTime - startTime) / 1e6; // milliseconds.
+		System.out.printf("TIME TAKEN IN PARALLEL COMPLETABLE-FUTURE ASYNC = %10.3f ms.\n", timeTaken);
+	}
 
 	// This is used for SEQUENTIAL and CompletableFuture version.
 	private static Data simulationOfDoingTask(Data data) {
