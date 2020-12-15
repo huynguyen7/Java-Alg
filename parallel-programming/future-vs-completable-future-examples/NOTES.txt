@@ -1,0 +1,23 @@
+GOOD EXPLANATION:
+https://www.youtube.com/watch?v=ImtZgX1nmr8
+
+*FOR EXAMPLE, WE HAVE A BUSINESS LOGIC FOR A CLIENT WHO IS MAKING AN ORDER:
+
+._________________.
+|                 |
+|    GET ORDER    |
+|_________________|
+         |
+         |
+.________|________.
+|                 |
+|  ACCESS PAYMENT |
+|_________________|
+         |
+         |
+.________|________.
+|                 |
+|   SHIP ORDER    |
+|_________________|
+
+** USING Task class in Java would cause a block operation -> Use CompletableFuture would be a better solution.
