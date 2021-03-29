@@ -1,4 +1,4 @@
-// leetcode 231.
+// leetcode 342.
 public class PowerOfFour {
     public static void main(String[] args) {
         showResults(16); // expect true
