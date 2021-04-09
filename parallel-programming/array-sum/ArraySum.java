@@ -24,7 +24,7 @@ public class ArraySum {
         System.out.printf("SUM = %.5f\tTIME TAKEN IN SEQUENTIAL = %.5f ms\n", sum, timeTaken);
     }
 
-    private static final int MAX_THREADS = 8;
+    private static final int MAX_THREADS = 16;
 
     private static void printTimeInParallel(double[] nums) {
         final int n = nums.length;
@@ -40,7 +40,7 @@ public class ArraySum {
                 final int startIndex = thread*chunkSize;
                 int endIndex = (thread+1)*chunkSize-1;
                 if(endIndex >= n) endIndex = n-1;
-                futures.add(pool.submit(new ArraySum(nums, startIndex, endIndex)));
+                futures.add(pool.submit(new ArraySumTask(nums, startIndex, endIndex)));
             }
 
             try {
@@ -58,13 +58,13 @@ public class ArraySum {
 
     }
 
-        private static class ArraySum implements Callable<Double> {
+        private static class ArraySumTask implements Callable<Double> {
             private int startIndex;
             private int endIndex;
             private double[] nums;
 
-            private ArraySum() {}
-            public ArraySum(double[] nums, int startIndex, int endIndex) {
+            private ArraySumTask() {}
+            public ArraySumTask(double[] nums, int startIndex, int endIndex) {
                 this.nums = nums;
                 this.startIndex = startIndex;
                 this.endIndex = endIndex;
