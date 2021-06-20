@@ -10,6 +10,9 @@ public class InsertionSort {
 
         Integer[] nums3 = {4,1,1,1};
         showResults(nums3); 
+
+        Integer[] nums4 = {1,1,2,4,1,9};
+        showResults(nums4); 
     }
 
     private static void showResults(Comparable[] data) {
@@ -25,12 +28,10 @@ public class InsertionSort {
         if(data == null || data.length == 0) return;
 
         for(int i = 1; i < data.length; ++i) {
-            for(int j = i-1; j >= 0; --j) {
-                int compare = data[i].compareTo(data[j]);
-                if(compare < 0) {
-                    swap(data, i, j);
-                    break;
-                }
+            int j = i;
+            while(j > 0 && data[j-1].compareTo(data[j]) > 0) {
+                swap(data, j-1, j);
+                j--;
             }
         }
     }
