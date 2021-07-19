@@ -18,20 +18,18 @@ public class SieveOfEratosthenes {
         System.out.printf("OUTPUT: %d\n", sieve(n));
     }
 
-    // Time: O(n*sqrt(n)), space: O(n)
+    // Time: O(n*loglog(n)), space: O(n)
     public static int sieve(int n) {
         if(n <= 1) return 0;
 
         int[] buffer = new int[n+1];
-        int i,j,mult;
+        int i,j;
 
-        for(i = 2; i <= n; ++i) {
-            j = 2;
-            mult = i*j;
-            while(mult <= n) {
-                buffer[mult] = 1;
-                j++;
-                mult = i*j;
+        int sqrt_n = (int) Math.sqrt(n);
+        for(i = 2; i <= sqrt_n; ++i) {
+            if(buffer[i] == 0) {
+                for(j = i*i; j <= n; j += i)
+                    buffer[j] = 1;
             }
         }
 
@@ -47,6 +45,8 @@ public class SieveOfEratosthenes {
         }
         System.out.println(primes.toString());
         */
+
+        System.out.println(Arrays.toString(buffer));
 
         return count;
     }
