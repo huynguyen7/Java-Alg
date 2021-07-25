@@ -33,7 +33,7 @@ public class Producer implements Runnable {
 
                 // Add into the buffer.
                 buff.add(data);
-                System.out.printf("[Producer] Added: %d\n", data);
+                System.out.printf("[Producer %s] Added: %d\n", Thread.currentThread().getName(), data);
             } catch(Exception e) {
                 e.printStackTrace();
             }

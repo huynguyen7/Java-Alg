@@ -20,7 +20,7 @@ public class Consumer implements Runnable {
                 Thread.sleep(REQUEST_TIME); // Just for simulating purpose.
                 // Get data.
                 int data = buff.poll();
-                System.out.printf("[Consumer] Received: %d\n", data);
+                System.out.printf("[Consumer %s] Received: %d\n", Thread.currentThread().getName(), data);
             }
         } catch(Exception e) {
             e.printStackTrace();
