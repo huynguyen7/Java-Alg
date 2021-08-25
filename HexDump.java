@@ -26,15 +26,15 @@ public class HexDump {
             if(i != 0 && i % 0x10 == 0)
                 System.out.println();
             if(i % 0x10 == 0) {
-                System.out.printf("%s\t", Integer.toHexString(numBytes));
+                System.out.printf("%08x\t", numBytes);
             }
-            System.out.printf("%s ", Integer.toHexString(c));
+            System.out.printf("%02x ", c);
             i++;
             numBytes++;
         }
         System.out.println();
         if(i % 0x10 != 0)
-            System.out.printf("%s\n", Integer.toHexString(numBytes));
+            System.out.printf("%08x\n", numBytes);
 
         fis.close();
     }
