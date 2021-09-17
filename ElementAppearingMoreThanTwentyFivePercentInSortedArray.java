@@ -18,6 +18,7 @@ public class ElementAppearingMoreThanTwentyFivePercentInSortedArray {
         //System.out.printf("Element appear more than 25 perc: %d\n\n", findSpecialIntegerII(nums)); // brute force approach.
     }
 
+    // Best approach with binary search.
     // Time: O(logn), space: O(1)
     public static int findSpecialInteger(int[] nums) {
         final int n = nums.length;
@@ -69,6 +70,7 @@ public class ElementAppearingMoreThanTwentyFivePercentInSortedArray {
         return -1; // Cannot find.
     }
 
+    // Better approach with no extra space usage.
     // Time: O(n), space: O(1)
     public static int findSpecialIntegerI(int[] nums) {
         final int n = nums.length;
