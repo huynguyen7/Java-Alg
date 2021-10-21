@@ -2,7 +2,7 @@ import java.util.concurrent.Semaphore;
 
 public class Philosopher implements Runnable {
     private final int name; // Name of philosopher.
-    private final int numRounds; // Number of eating rounds.
+    private int numRounds; // Number of eating rounds.
     private Chopstick leftC;
     private Chopstick rightC;
     private Semaphore sm;
@@ -21,15 +21,21 @@ public class Philosopher implements Runnable {
 
     @Override
     public void run() {
-        for(int r = 0; r < numRounds; ++r) { // For each round.
+        while (numRounds > 0) { // For each rounds
             try {
                 sm.acquire(); // Acquire the semaphore lock and decrease the permit.
                 // Get the chopsticks.
-                leftC.lock();
-                rightC.lock();
+                boolean gotLeftChopstick = leftC.tryLock();
+                if(!gotLeftChopstick) continue;
+                boolean gotRightChopstick = rightC.tryLock();
+                if(!gotRightChopstick) {
+                    leftC.unlock();
+                    continue;
+                }
 
                 // Eat!
                 eat();
+                numRounds--;
 
                 // Release the chopsticks.
                 leftC.unlock();

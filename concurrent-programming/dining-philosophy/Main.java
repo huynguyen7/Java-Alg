@@ -12,8 +12,19 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        if(args.length != 2) {
+            System.out.println("[Error] Need input args.\n" +
+                               "First arg <number of philosophers>\n" + 
+                               "Second arg <number of eating rounds>");
+            return;
+        }
+
         final int numPhilosophers = Integer.parseInt(args[0]);
         final int numRounds = Integer.parseInt(args[1]); // Number of eating rounds.
+        if(numPhilosophers <= 1 || numRounds <= 0) {
+            System.out.println("[Error] Invalid input.");
+            return;
+        }
 
         // Allow up to numPhilosophers-1 philosophers to access the dining table.
         Semaphore sm = new Semaphore(numPhilosophers-1, true);
