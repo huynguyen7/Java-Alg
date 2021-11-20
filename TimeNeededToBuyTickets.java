@@ -4,6 +4,7 @@ import java.util.Arrays;
 public class TimeNeededToBuyTickets {
     public static void main(String[] args) {
         showResults(new int[] {2,3,2}, 2); // expect 6
+        showResults(new int[] {2,3,2}, 1); // expect 7
         showResults(new int[] {5,1,1,1}, 0); // expect 8
     }
 
