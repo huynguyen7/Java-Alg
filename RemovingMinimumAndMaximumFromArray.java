@@ -41,12 +41,10 @@ public class RemovingMinimumAndMaximumFromArray {
         int a = Math.max(minIndex, maxIndex) + 1; // both left.
         int b = minIndex+1 + n - maxIndex; // min left, max right.
         int c = maxIndex+1 + n - minIndex; // max left, min right.
-        int d = n - Math.min(minIndex, maxIndex);
+        int d = n - Math.min(minIndex, maxIndex); // both right.
 
         int rs = Math.min(Math.min(a,b),
                 Math.min(c,d));
-
-        System.out.printf("(%d, %d) (%d, %d) %d %d %d %d %d\n", maxVal, maxIndex, minVal, minIndex, a,b,c,d,rs);
 
         return rs;
     }
