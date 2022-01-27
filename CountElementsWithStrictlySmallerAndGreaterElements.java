@@ -1,5 +1,6 @@
 import java.util.Arrays;
 
+// leetcode 2148.
 public class CountElementsWithStrictlySmallerAndGreaterElements {
     public static void main(String[] args) {
         assert(showResults(new int[] {11,7,2,15}) == 2); // expect 2
