@@ -1,0 +1,27 @@
+Imagine a scenario that parent thread create a child thread and let it do some printing, then the parent thread waits for the child to finish its task and do its own task.
+
+We would expect:
+[Parent] Hello
+[Child]  Hello
+[Parent] Done
+
+Poor implementation:
+
+int done = 0;
+cond condition_var = COND_INITIALIZER;
+void thr_exit() {
+    done = 1;
+    signal(condition_var);
+}
+
+void thr_join() {
+    while(done == 0)
+        pthread_cond_wait(condition_var);
+}
+
+WHY??
+For example, after the parent thread runs first, and then finish checking `done` variable is 0, just BEFORE it executes pthread_cond_wait(), the child thread changes `done` to 1 and signal the conditional variable, hence there is no thread in waiting mode. Then, the parent thread go to sleep forever.. How sad!
+
+---SUMMARY---
+Difference between sleep() and wait() in Threading:
+Similarly, both functions make the threads go to sleep state. Sleep does not interfere with any conditional variable. Wait hence always wait for a signal for notification. Lastly, also the most important, wait() makes all the locks acquired by that specific thread RELEASED!
