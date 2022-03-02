@@ -2,14 +2,18 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-// Implementation of semaphore using Mutex and Conditional Variable.
+/**
+ *
+ * Implementation of semaphore using Mutex and Conditional Variable.
+ *
+ */
 public class SimpleSemaphore {
     private Lock mutex;
     private Condition cond;
     private int value;
 
     public SimpleSemaphore(int value) {
-        mutex = new ReentrantLock();
+        mutex = new ReentrantLock(true); // true for fairness.
         cond = mutex.newCondition();
         this.value = value;
     }
