@@ -82,7 +82,7 @@ public class SimpleFairLock implements Lock {
 
         public synchronized void doNotify() {
             alreadyNotified = true;
-            notify(); // Notify the current thread holding its LockRequest object. No need to notifyAll()
+            notifyAll(); 
         }
     }
 }
