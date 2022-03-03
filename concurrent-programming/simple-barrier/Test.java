@@ -1,32 +1,41 @@
+import java.util.Random;
+
 public class Test {
     public static void main(String[] args) {
-        SimpleBarrier barrier = new SimpleBarrier(2);
+        final int numThreads = Integer.parseInt(args[0]);
+        Random rand = new Random();
+        SimpleBarrier barrier = new SimpleBarrier(numThreads);
+        
+        Thread[] threads = new Thread[numThreads];
 
-        Thread t1 = new Thread(() -> {
+        for(int i = 0; i < numThreads; ++i) {
+            final int index = i;
+            Thread t = new Thread(() -> {
+                try {
+                    Thread.sleep(rand.nextInt(1000)+500);
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+
+                System.out.printf("[%d] Hello\n", index);
+                barrier.await();
+                System.out.printf("[%d] Goodbye\n", index);
+            });
+            threads[i] = t;;
+        }
+
+        for(int i = 0; i < numThreads; ++i) {
+            Thread t = threads[i];
+            t.start();
+        }
+
+        for(int i = 0; i < numThreads; ++i) {
+            Thread t = threads[i];
             try {
-                Thread.sleep(1000);
-            } catch(Exception e) {
+                t.join();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            System.out.println("[1] Hello");
-            barrier.await();
-            System.out.println("[1] Goodbye");
-        });
-
-        Thread t2 = new Thread(() -> {
-            System.out.println("[2] Hello");
-            barrier.await();
-            System.out.println("[2] Goodbye");
-        });
-
-        try {
-            t1.start();
-            t2.start();
-            t1.join();
-            t2.join();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
