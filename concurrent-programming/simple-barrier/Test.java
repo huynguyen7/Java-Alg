@@ -8,11 +8,23 @@ public class Test {
         
         Thread[] threads = new Thread[numThreads];
 
-        for(int i = 0; i < numThreads; ++i) {
+        threads[0] = new Thread(() -> {
+            try {
+                System.out.printf("[%d] Hello\n", 0);
+                barrier.await();
+
+                Thread.sleep(rand.nextInt(2000)+500);
+                System.out.printf("[%d] Goodbye\n", 0);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        for(int i = 1; i < numThreads; ++i) {
             final int index = i;
             Thread t = new Thread(() -> {
                 try {
-                    Thread.sleep(rand.nextInt(1000)+500);
+                    Thread.sleep(rand.nextInt(5000)+500);
                 } catch(Exception e) {
                     e.printStackTrace();
                 }
