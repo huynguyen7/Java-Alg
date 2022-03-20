@@ -3,54 +3,62 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-//leetcode 145
+// leetcode 145.
 public class BinaryTreePostorderTraversal {
 	public static void main(String[] args) {
 		Integer[] nums1 = {1,null,2,null,null,3};
-		showResults(nums1); //expect {3,2,1} 
+		showResults(nums1); // expect [3,2,1]
 
-		Integer[] nums2 = {1,2,3,4,5};
-		showResults(nums2); //expect {4,5,2,1,3}
+		Integer[] nums2 = {};
+		showResults(nums2); // expect []
+
+		Integer[] nums3 = {1};
+		showResults(nums3); // expect [1]
+
+		Integer[] nums4 = {1,null,2,null,null,3,4};
+		showResults(nums4); // expect [3,4,2,1]
 	}
 
 	private static void showResults(Integer[] nums) {
 		System.out.println("------ShowResults------\n");
 		TreeNode root = createTreeFromArray(nums);
 		printBinaryTree(root);
-
-		List<Integer> rs = preorderTraversal(root);
-		if(rs != null) System.out.println("\n" + rs.toString() + "\n");
-	}
-	
-	//time: O(n), space: O(n)
-	public static List<Integer> preorderTraversal(TreeNode root) {
-		List<Integer> rs = new ArrayList<>();
-		if(root == null) return rs;
-
-		Deque<TreeNode> stack = new LinkedList<>();
-		TreeNode curr = root;
 		
-		while(!stack.isEmpty() || curr != null) {
-			if(curr != null) { //go left
-				stack.addFirst(curr);
-				curr = curr.left;
-			} else { //go right
-				curr = stack.peek();
-				curr = curr.right;
-				if(curr == null) { //if cannot go right, process the node
-					TreeNode tmp = stack.removeFirst();
-					rs.add(tmp.val);
-					//this is the tricky part
-					while(!stack.isEmpty() && stack.peek().right == tmp) {
-						tmp = stack.removeFirst();
-						rs.add(tmp.val);
-					}
-				}
-			}
-		}
-
-		return rs;
+		List<Integer> rs = postorderTraversal(root);
+        System.out.printf("\n%s\n\n", rs.toString());
 	}
+
+    // Time: O(n), space: O(h)
+    public static List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> rs = new ArrayList<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+
+        TreeNode curr = root;
+
+        while(curr != null || !stack.isEmpty()) {
+            if(curr != null) { // Go left
+                stack.addFirst(curr);
+                curr = curr.left;
+            } else { // Go right
+                curr = stack.peekFirst();
+                curr = curr.right;
+                if(curr != null) continue; // Back to `Go left` statement
+                else {
+                    // Process the current node
+                    TreeNode tmp = stack.removeFirst();
+                    rs.add(tmp.val);
+
+                    // This is the trickiest part!
+                    while(!stack.isEmpty() && stack.peekFirst().right == tmp) {
+                        tmp = stack.removeFirst();
+                        rs.add(tmp.val);
+                    }
+                }
+            }
+        }
+
+        return rs;
+    }
 
 	//time: O(n), space: O(h); n is total nodes, h is height of the tree
 	public static void printPreorder(TreeNode root) {
