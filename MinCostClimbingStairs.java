@@ -13,14 +13,14 @@ public class MinCostClimbingStairs {
 	private static void showResults(int[] cost) {
 		System.out.println("----ShowResults----");
 		System.out.println(Arrays.toString(cost));
-		int rs = minCostClimbingStairsI(cost);
+		int rs = minCostClimbingStairs(cost);
 		System.out.printf("Min cost: %d\n\n", rs);
 	}
 
 	// DP approach.
 	// bottom-up DP.
 	// Time: O(n), space: O(1)
-	public static int minCostClimbingStairsI(int[] cost) {
+	public static int minCostClimbingStairs(int[] cost) {
 		if(cost == null || cost.length == 0) return 0;
 		
 		int n = cost.length;
@@ -29,6 +29,26 @@ public class MinCostClimbingStairs {
 
 		return Math.min(cost[n - 1], cost[n - 2]);
 	}
+
+    // DP approach, top-down.
+    // Time: O(n), space: O(n) 
+    public int minCostClimbingStairsI(int[] cost) {
+        final int n = cost.length;
+        int[] mem = new int[n];
+        Arrays.fill(mem, -1);
+        
+        return Math.min(dfsI(cost, mem, 0), dfsI(cost, mem, 1));
+    }
+    
+    private int dfsI(int[] cost, int[] mem, int curr) {
+        if(curr >= cost.length) return 0;
+        else if(mem[curr] != -1) return mem[curr];
+        else {
+            int rs = Math.min(dfsI(cost, mem, curr+1), dfsI(cost, mem, curr+2)) + cost[curr];
+            mem[curr] = rs;
+            return mem[curr];
+        }
+    }
 
 	// Recursive approach.
 	// Time: O(2^n), space: O(2^n)
