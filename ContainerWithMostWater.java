@@ -20,6 +20,9 @@ public class ContainerWithMostWater {
 		
 		int[] h6 = {7,2};
 		showResults(h6); // expect 2
+
+        int[] h7 = {4,3,7,4};
+        showResults(h7); // expect 12
 	}
 
 	private static void showResults(int[] height) {
