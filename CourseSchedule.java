@@ -61,8 +61,8 @@ public class CourseSchedule {
 		
 		boolean[] visited = new boolean[numCourses];
 		for(int i = 0; i < numCourses; ++i) {
-			boolean hasCyle = dfs(graph, visited, i); // start at i
-			if(hasCyle) return false;
+			boolean hasCycle = dfs(graph, visited, i); // start at i
+			if(hasCycle) return false;
 		}
 
 		return true;

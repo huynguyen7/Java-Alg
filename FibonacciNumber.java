@@ -17,9 +17,26 @@ public class FibonacciNumber {
 		System.out.printf("F(%d) = %d\n", n, fibI(n));
 	}
 
+    // Best approach
+    // Time: O(n), space: O(1)
+    public static int fib(int n) {
+        if(n <= 1) return n;
+        int val, preVal;
+        val = 1;
+        preVal = 0;
+
+        for(int i = 2; i <= n; ++i) {
+            int tmp = val;
+            val += preVal;
+            preVal = tmp;
+        }
+
+        return val;
+    }
+
 	private static Map<Integer, Integer> cache;
 
-    // best approach, only replacing elements in cache without adding new ones.
+    // better approach, only replacing elements in cache without adding new ones.
     // DP approach with iterations
     // bottom-up DP
     // Time: O(n), space: O(1)
