@@ -16,7 +16,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
         return rs;
     }
 
-    // Time: O(n^2), space: O(1)
+    // Time: O(n), space: O(1)
     public static int lengthOfLongestSubstring(String s) {
         final int n = s.length();
         if(n <= 1) return n;
