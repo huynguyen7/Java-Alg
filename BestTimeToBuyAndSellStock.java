@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-// leetcode 121.
+// leetcode 121, Element of Programming Interview 6.6.
 public class BestTimeToBuyAndSellStock {
     public static void main(String[] args) {
         assert(showResults(new int[] {7,1,5,3,6,4}) == 5); // expect 5
@@ -15,7 +15,7 @@ public class BestTimeToBuyAndSellStock {
         return rs;
     }
 
-    // Time: O(), space: O()
+    // Time: O(n), space: O(1)
     public static int maxProfit(int[] prices) {
         int maxProfit = 0;
         int minPrice = Integer.MAX_VALUE;

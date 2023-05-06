@@ -14,8 +14,32 @@ public class PartitionArrayAccordingToGivenPivot {
         System.out.printf("%d\n%s\n\n", pivot, Arrays.toString(rs));
     }
 
-    // Time: O(n), space: O(n)
+    // Time: O(n), space: O(1)
     public static int[] pivotArray(int[] nums, int pivot) {
+        final int n = nums.length;
+        int smaller = 0;
+        for(int i = 0; i < n; ++i) {
+            if(nums[i] < pivot)
+                swap(nums, smaller++, i);
+        }
+
+        int larger = n-1;
+        for(int i = n-1; i >= 0 && nums[i] >= pivot; --i) {
+            if(nums[i] > pivot)
+                swap(nums, larger--, i);
+        }
+
+        return nums;
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+
+    // Time: O(n), space: O(n)
+    public static int[] pivotArrayII(int[] nums, int pivot) {
         final int n = nums.length;
         int[] rs = new int[n];
         int curr = 0;
