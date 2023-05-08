@@ -7,6 +7,7 @@ import java.util.Collections;
  * Elements of Programming Interview 6.8 .
  * Only accept n as positive integer.
  * Prime numbers are larger than 1 (>1).
+ * Problem: Sieve Of Eratosthenes.
 */
 public class GeneratePrimesToN {
     public static void main(String[] args) {

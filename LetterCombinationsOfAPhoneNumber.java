@@ -2,6 +2,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
+// Elements of Programming Interview 7.7 .
 // leetcode 17.
 public class LetterCombinationsOfAPhoneNumber {
     public static void main(String[] args) {
@@ -45,9 +46,9 @@ public class LetterCombinationsOfAPhoneNumber {
             int cNum = (int) c - 48;
 
             for(char a: letters[cNum - 1].toCharArray()) {
-                holder.append(a);
-                backtrack(rs, digits, holder, startIndex + 1);
-                holder.deleteCharAt(holder.length() - 1);
+                holder.append(a); // Make choice.
+                backtrack(rs, digits, holder, startIndex + 1); // Explore.
+                holder.deleteCharAt(holder.length() - 1); // Undo choice.
             }
         }
     }
