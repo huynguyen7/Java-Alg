@@ -36,7 +36,7 @@ public class MergeTwoSortedLists {
     }
 
     // n is list1's length, m is list2's length.
-    // Time: O(), space: O()
+    // Time: O(n+m), space: O(1)
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode dummy = new ListNode();
         ListNode tmp;
