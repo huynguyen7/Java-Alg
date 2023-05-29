@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Stack;
 
-//element-prog 8.4.
+// Elements of Programming Interview 8.5.
 public class IntersectionOfTwoLinkedListMayHaveCycle {
 	public static void main(String args[]) {
 		int[] l1 = {2,1,5};  
