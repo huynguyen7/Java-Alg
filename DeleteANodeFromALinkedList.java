@@ -1,4 +1,6 @@
-//element-prog 8.6, 8.7
+/**
+ * Elements of Programming Interview 8.7.
+ */
 public class DeleteANodeFromALinkedList {
 	public static void main(String args[]) {
 		int[] nums1 = {1,2,3,4};
