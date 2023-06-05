@@ -2,7 +2,10 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//leetcode 150, element-prog 9.2
+/**
+ * Elements of Programming Interview 9.2,
+ * leetcode 150.
+ */
 public class EvaluateReversePolishNotation {
 	public static void main(String args[]) {
 		String[] tokens1 = {"2","1","+","3","*"};
@@ -25,7 +28,7 @@ public class EvaluateReversePolishNotation {
 		System.out.printf("OUTPUT: %d\n\n", evalRPN(tokens));
 	}
 
-	//time: O(n), space: O(n)
+	// Time: O(n), space: O(n)
 	public static int evalRPN(String[] tokens) {
 		if(tokens.length == 0 || tokens == null) return 0;
 

@@ -1,8 +1,9 @@
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Arrays;
+import java.util.Stack;
 
-//leetcode 71, element-prog 9.4
+/**
+ * Elements of Programming Interview 9.4,
+ * leetcode 71
+ */
 public class SimplifyPath {
 	public static void main(String args[]) {
 		String s1 = "/home/"; //expect "/home"
@@ -14,40 +15,42 @@ public class SimplifyPath {
 		String s7 = "/.."; //expect "/"
 		String s8 = "/..."; //expect "/..."
 		
-		showResults(s1);
-		showResults(s2);
-		showResults(s3);
-		showResults(s4);
-		showResults(s5);
-		showResults(s6);
-		showResults(s7);
-		showResults(s8);
+		assert(showResults(s1).equals("/home"));
+		assert(showResults(s2).equals("/"));
+		assert(showResults(s3).equals("/home/foo"));
+		assert(showResults(s4).equals("/c"));
+		assert(showResults(s5).equals("/c"));
+		assert(showResults(s6).equals("/a/b/c"));
+		assert(showResults(s7).equals("/"));
+		assert(showResults(s8).equals("/..."));
 	}
 
-	private static void showResults(String path) {
-		System.out.printf("%s --> %s\n\n", path, simplifyPath(path));
+	private static String showResults(String path) {
+        String rs = simplifyPath(path);
+		System.out.printf("%s --> %s\n\n", path, rs);
+        return rs;
 	}
 	
-	//time: O(n), space: O(n)
+	// Time: O(n), space: O(n)
 	public static String simplifyPath(String path) {
-		if(path.length() == 0 || path == null) return path;
+        if(path == null) return "";
 
-		Deque<String> stack = new LinkedList<>(); //space: O(n)
-		StringBuilder rs = new StringBuilder();
-		String[] segments = path.split("/");
+        Stack<String> stack = new Stack<>();
+        StringBuilder rs = new StringBuilder();
+        String[] dirs = path.split("/");
 
-		for(String segment: segments) {
-			if(segment.equals(".") || segment.equals("")) continue;
-			else if(segment.equals("..") && stack.isEmpty()) continue;
-			else if(segment.equals("..") && !stack.isEmpty()) stack.removeFirst();
-			else stack.addFirst(segment);
-		}
-		
-		while(!stack.isEmpty()) rs.insert(0, stack.removeFirst() + "/");
-		rs.insert(0, '/');
-		rs.deleteCharAt(rs.length() - 1);
+        for(String dir: dirs) {
+            if(dir.isEmpty() || dir.equals(".")) continue;
+            else if(dir.equals("..")) {
+                if(!stack.isEmpty()) stack.pop();
+            } else stack.push(dir);
+        }
+        
+        if(stack.isEmpty()) return "/";
+        while(!stack.isEmpty())
+            rs.insert(0, "/" + stack.pop());
 
-		return rs.length() != 0 ? rs.toString() : "/";
+        return rs.toString();
 	}
 }
 

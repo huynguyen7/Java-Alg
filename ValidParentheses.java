@@ -1,7 +1,10 @@
 import java.util.Deque;
 import java.util.LinkedList;
 
-//leetcode 20, element-prog 9.3
+/**
+ * Elements of Programming Interview 9.3,
+ * leetcode 20.
+ */
 public class ValidParentheses {
 	public static void main(String args[]) {
 		String s1 = "()"; //expect true
