@@ -1,4 +1,7 @@
-//element-prog 8.12, leetcode 86.
+/**
+ * Elements of Programming Interview 8.12,
+ * leetcode 86.
+ */
 public class PartitionList {
 	public static void main(String args[]) {
 		int[] nums1 = {1,4,3,2,5,2};

@@ -1,4 +1,7 @@
-//element-prog 8.11, leetcode 234.
+/**
+ * Elements of Programming Interview 8.11,
+ * leetcode 234.
+ */
 public class PalindromeLinkedList {
 	public static void main(String args[]) {
 		int[] nums1 = {1,2}; //expect false

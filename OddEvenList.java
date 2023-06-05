@@ -1,4 +1,7 @@
-//element-prog 8.10, leetcode 328.
+/**
+ * Elements of Programming Interview 8.10
+ * leetcode 328.
+ */
 public class OddEvenList {
 	public static void main(String args[]) {
 		int[] nums1 = {1,2,3,4,5};
