@@ -3,7 +3,10 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-//leetcode 102, element-prog 9.7
+/**
+ * Elements of Programming 9.7,
+ * leetcode 102.
+ */
 public class BinaryTreeLevelOrderTraversal {
 	public static void main(String[] args) {
 		Integer[] nums1 = {1,2,3,4,5,6,7};
